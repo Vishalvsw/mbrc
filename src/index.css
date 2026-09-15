@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom scrollbar in Indian Navy / Saffron */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0B192C;
+}
+::-webkit-scrollbar-thumb {
+  background: #1E3E62;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF671F;
+}
+

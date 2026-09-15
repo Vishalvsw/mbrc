@@ -1,0 +1,6 @@
+{
+  "name": "MBRC & Infrastructure",
+  "description": "Corporate digital platform and admin web application for MBRC & Infrastructure Private Limited, leading construction & infrastructure company since 1972.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

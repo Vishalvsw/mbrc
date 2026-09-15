@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <script>
+      (function() {
+        try {
+          var _f = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _f;
+            },
+            set: function(val) {
+              _f = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          // Fallback if property is already locked
+        }
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBRC & Infrastructure | Building Infrastructure. Connecting Communities.</title>
+    <meta name="description" content="Corporate digital platform and admin web application for MBRC & Infrastructure Private Limited, leading construction & infrastructure company since 1972." />
+    <meta property="og:title" content="MBRC & Infrastructure | Building Infrastructure. Connecting Communities." />
+    <meta property="og:description" content="A legacy of civil engineering since 1972. MBRC & Infrastructure Private Limited operates high-capacity stone crushers, M-Sand units, computerized asphalt batching plants, and highway infrastructure across India." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0B111E] text-slate-900 antialiased selection:bg-[#D4AF37] selection:text-slate-950">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
