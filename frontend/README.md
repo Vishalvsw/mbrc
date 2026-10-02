@@ -341,7 +341,8 @@ The project does **not** require any `.env` file for the current build. If you a
 - 📍 2-475/68, Bhatambra, Tq. Bhalki, Bidar, Karnataka – 585411, India
 - 📞 +91 97310 49500
 - ✉️ inframbrc@gmail.com
-- 🌐 [mbrc-website.vercel.app](https://mbrc-website.vercel.app)
+- 🌐 https://mbrc-gray.vercel.app/
+  
 
 ---
 
