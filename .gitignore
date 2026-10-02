@@ -41,3 +41,5 @@ coverage/
 # Uploads (temp)
 **/uploads/*
 !**/uploads/.gitkeep
+**/.env.backup
+**/.env.*.bak
