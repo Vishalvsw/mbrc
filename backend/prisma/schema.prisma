@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  role         String   @default("client")
+  name         String?
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
+model Enquiry {
+  id              String        @id @default(uuid())
+  referenceId     String        @unique @map("reference_id")
+  customerName    String        @map("customer_name")
+  company         String?
+  mobile          String
+  email           String
+  projectType     String        @map("project_type")
+  projectLocation String?       @map("project_location")
+  message         String?
+  status          String        @default("New")
+  adminNotes      String?       @map("admin_notes")
+  createdAt       DateTime      @default(now()) @map("created_at")
+  updatedAt       DateTime      @updatedAt @map("updated_at")
+  files           EnquiryFile[]
+
+  @@index([status])
+  @@index([email])
+  @@map("enquiries")
+}
+
+model EnquiryFile {
+  id         String   @id @default(uuid())
+  enquiryId  String   @map("enquiry_id")
+  filename   String
+  fileUrl    String   @map("file_url")
+  fileSize   BigInt?  @map("file_size")
+  mimeType   String?  @map("mime_type")
+  uploadedAt DateTime @default(now()) @map("uploaded_at")
+  enquiry    Enquiry  @relation(fields: [enquiryId], references: [id], onDelete: Cascade)
+
+  @@map("enquiry_files")
+}
+
+model MediaItem {
+  id           String   @id @default(uuid())
+  title        String
+  description  String?
+  type         String
+  category     String
+  url          String
+  thumbnailUrl String?  @map("thumbnail_url")
+  fileSize     String?  @map("file_size")
+  published    Boolean  @default(true)
+  displayOrder Int      @default(0) @map("display_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@index([published])
+  @@map("media_items")
+}
+
+model Project {
+  id             String         @id @default(uuid())
+  name           String
+  category       String
+  location       String
+  projectType    String?        @map("project_type")
+  description    String?
+  client         String?
+  completionYear String?        @map("completion_year")
+  lengthKm       String?        @map("length_km")
+  valueCr        String?        @map("value_cr")
+  status         String?
+  published      Boolean        @default(true)
+  displayOrder   Int            @default(0) @map("display_order")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+  images         ProjectImage[]
+
+  @@index([published])
+  @@map("projects")
+}
+
+model ProjectImage {
+  id           String   @id @default(uuid())
+  projectId    String   @map("project_id")
+  imageUrl     String   @map("image_url")
+  displayOrder Int      @default(0) @map("display_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+  project      Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_images")
+}
+
+model Service {
+  id             String   @id @default(uuid())
+  title          String
+  shortDesc      String?  @map("short_desc")
+  description    String?
+  iconName       String?  @map("icon_name")
+  imageUrl       String?  @map("image_url")
+  subServices    Json     @default("[]") @map("sub_services")
+  specifications Json     @default("[]") @map("specifications")
+  published      Boolean  @default(true)
+  displayOrder   Int      @default(0) @map("display_order")
+  createdAt      DateTime @default(now()) @map("created_at")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("services")
+}
+
+model Content {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  value     String?
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("content")
+}
+
+model Leadership {
+  id              String   @id @default(uuid())
+  name            String
+  title           String
+  bio             String?
+  statement       String?
+  imageUrl        String?  @map("image_url")
+  focusAreas      Json     @default("[]") @map("focus_areas")
+  experienceYears Int?     @map("experience_years")
+  published       Boolean  @default(true)
+  displayOrder    Int      @default(0) @map("display_order")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("leadership")
+}
